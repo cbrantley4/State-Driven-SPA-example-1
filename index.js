@@ -4,14 +4,7 @@ import * as state from "./store";
 import Navigo from "navigo";
 import { capitalize } from "lodash";
 
-const router = new Navigo(window.location.origin);
-
-router
-  .on({
-    ":page": (params) => render(state[capitalize(params.page)]),
-    "/": () => render(state.Home),
-  })
-  .resolve();
+const router = new Navigo("/");
 
 function render(st = state.Home) {
   document.querySelector("#root").innerHTML = `
@@ -61,3 +54,15 @@ function addEventListeners(st) {
     });
   }
 }
+
+router
+  .on({
+    "/": () => {
+      render(state.Home);
+    },
+    ":view": params => {
+      let view = capitalize(params.data.view);
+      render(state[view]);
+    }
+  })
+  .resolve();

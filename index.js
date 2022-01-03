@@ -21,8 +21,8 @@ function render(st = state.Home) {
 
 function addEventListeners(st) {
   // add event listeners to Nav items for navigation
-  document.querySelectorAll("nav a").forEach((navLink) =>
-    navLink.addEventListener("click", (event) => {
+  document.querySelectorAll("nav a").forEach(navLink =>
+    navLink.addEventListener("click", event => {
       event.preventDefault();
       render(state[event.target.title]);
     })
@@ -34,25 +34,6 @@ function addEventListeners(st) {
     .addEventListener("click", () =>
       document.querySelector("nav > ul").classList.toggle("hidden--mobile")
     );
-
-  // event listener for the the photo form
-  if (st.view === "Form") {
-    document.querySelector("form").addEventListener("submit", (event) => {
-      event.preventDefault();
-      // convert HTML elements to Array
-      let inputList = Array.from(event.target.elements);
-      // remove submit button from list
-      inputList.pop();
-      // construct new picture object
-      let newPic = inputList.reduce((pictureObject, input) => {
-        pictureObject[input.name] = input.value;
-        return pictureObject;
-      }, {});
-      // add new picture to state.Gallery.pictures
-      state.Gallery.pictures.push(newPic);
-      render(state.Gallery);
-    });
-  }
 }
 
 router

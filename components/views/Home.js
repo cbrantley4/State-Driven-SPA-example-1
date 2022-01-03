@@ -1,5 +1,4 @@
 import html from "html-literal";
-
 export default () => html`
   <section id="jumbotron">
     <h2>Savvy Coders Jan. 2020 Cohort</h2>

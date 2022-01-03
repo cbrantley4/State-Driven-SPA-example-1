@@ -1,7 +1,6 @@
-import html from "html-literal";
 import dogPic from "../../assets/img/photo-1510771463146-e89e6e86560e.jpg";
 
-export default st => html`
+export default st => `
   <section id="bio">
     <h2>Vivamus ac justo eu nisi</h2>
     <img src="${dogPic}" alt="me" />

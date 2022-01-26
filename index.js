@@ -9,7 +9,7 @@ const router = new Navigo("/");
 function render(state = store.Home) {
   document.querySelector("#root").innerHTML = `
   ${Header(state)}
-  ${Nav(state.Links)}
+  ${Nav(store.Links)}
   ${Main(state)}
   ${Footer()}
 `;
@@ -24,7 +24,7 @@ function addEventListeners(state) {
   document.querySelectorAll("nav a").forEach(navLink =>
     navLink.addEventListener("click", event => {
       event.preventDefault();
-      render(state[event.target.title]);
+      render(store[event.target.title]);
     })
   );
 

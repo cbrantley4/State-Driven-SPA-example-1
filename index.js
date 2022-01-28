@@ -39,7 +39,7 @@ function addEventListeners(state) {
 router
   .on({
     "/": () => {
-      render(store.Home);
+      render();
     },
     ":view": params => {
       let view = capitalize(params.data.view);

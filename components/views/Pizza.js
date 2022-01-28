@@ -1,5 +1,5 @@
 import html from "html-literal";
-export default st => html`
+export default state => html`
   <table id="pizzas">
     <tr>
       <th>Crust</th>
@@ -7,7 +7,7 @@ export default st => html`
       <th>Sauce</th>
       <th>Toppings</th>
     </tr>
-    ${st.pizzas
+    ${state.pizzas
       .map(pizza => {
         return `<tr><td>${pizza.crust}</td><td>${pizza.cheese}</td><td>${
           pizza.sauce

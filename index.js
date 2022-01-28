@@ -1,30 +1,30 @@
 import { Header, Nav, Main, Footer } from "./components";
-import * as state from "./store";
+import * as store from "./store";
 
 import Navigo from "navigo";
 import { capitalize } from "lodash";
 
 const router = new Navigo("/");
 
-function render(st = state.Home) {
+function render(state = store.Home) {
   document.querySelector("#root").innerHTML = `
-  ${Header(st)}
-  ${Nav(state.Links)}
-  ${Main(st)}
+  ${Header(state)}
+  ${Nav(store.Links)}
+  ${Main(state)}
   ${Footer()}
 `;
 
   router.updatePageLinks();
 
-  addEventListeners(st);
+  addEventListeners(state);
 }
 
-function addEventListeners(st) {
+function addEventListeners(state) {
   // add event listeners to Nav items for navigation
   document.querySelectorAll("nav a").forEach(navLink =>
     navLink.addEventListener("click", event => {
       event.preventDefault();
-      render(state[event.target.title]);
+      render(store[event.target.title]);
     })
   );
 
@@ -39,11 +39,11 @@ function addEventListeners(st) {
 router
   .on({
     "/": () => {
-      render(state.Home);
+      render(store.Home);
     },
     ":view": params => {
       let view = capitalize(params.data.view);
-      render(state[view]);
+      render(store[view]);
     }
   })
   .resolve();
